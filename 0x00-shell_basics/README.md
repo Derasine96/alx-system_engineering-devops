@@ -1,1 +1,1 @@
-Create a script to delete a file
+Create a script that changes the working directory to the previous one
