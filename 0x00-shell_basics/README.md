@@ -1,1 +1,1 @@
-Create a script that changes the working directory to the previous one
+Creating a script that prints the type of the file
