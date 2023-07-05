@@ -1,1 +1,1 @@
-Display a list of current directory with long formats, hidden files and user and group IDs displayed numerically
+Create a script that creates a directory named my_first_directory in the /tmp/ directory.
