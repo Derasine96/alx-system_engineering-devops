@@ -1,1 +1,1 @@
-Creating a script that prints the type of the file
+Writing a script to Create a symbolic link
