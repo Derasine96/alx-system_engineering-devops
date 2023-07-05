@@ -1,1 +1,1 @@
-Creating a script that copies files but ignores the extensions
+Create a script that moves all files beginning with an uppercase letter to a directory
