@@ -1,1 +1,1 @@
-Writing a script to Create a symbolic link
+Creating a script that copies files but ignores the extensions
