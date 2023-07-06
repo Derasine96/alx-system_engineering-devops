@@ -1,1 +1,1 @@
-Learning all about shell permissions
+Create a script that prints username of the current user
