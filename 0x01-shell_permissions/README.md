@@ -1,1 +1,1 @@
-A script about file permission to the other users only
+Write a script that sets the mode a file
