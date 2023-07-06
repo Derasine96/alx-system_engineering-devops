@@ -1,1 +1,1 @@
-A script for file execution permission
+A script about file permission to the other users only
