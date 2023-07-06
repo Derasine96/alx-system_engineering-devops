@@ -1,1 +1,1 @@
-Creating a script that creates an empty file called
+Write a script that adds execute permission to the owner a the file
