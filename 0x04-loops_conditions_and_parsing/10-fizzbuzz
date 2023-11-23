@@ -3,7 +3,7 @@
 count=1
 while [ $count -le 100 ]
 do
-	if [ $((count % 5)) -eq 0 -a $((count % 3)) -eq 0 ]
+	if [ $((count % 5)) -eq 0 ] && [ $((count % 3)) -eq 0 ] 
 	then
 		echo "FizzBuzz"
 	elif [ $((count % 3)) -eq 0 ]
