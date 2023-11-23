@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script is displaying numbers 1 - 20
+count=1
+while [ $count -le 20 ]
+do
+	if [ $count -eq 4 ]
+	then
+		echo  -e "$count\nbad luck from China"
+	elif [ $count -eq 9 ]
+	then
+		echo -e "$count\nbad luck from Japan"
+	elif [ $count -eq 17 ]
+        then
+                echo -e "$count\nbad luck from Italy"
+	else
+		echo "$count"
+	fi
+	((count++))
+done
