@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script is displaying numbers 1 - 20 with special messages
+count=1
+while [ $count -le 100 ]
+do
+	if [ $((count % 5)) -eq 0 -a $((count % 3)) -eq 0 ]
+	then
+		echo "FizzBuzz"
+	elif [ $((count % 3)) -eq 0 ]
+	then
+		echo "Fizz"
+	elif [ $((count % 5)) -eq 0 ]
+	then
+		echo "Buzz"
+	else
+		echo "$count"
+	fi
+	((count++))
+done
