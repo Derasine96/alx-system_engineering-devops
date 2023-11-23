@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # This script displays: The content of the current directory in a list format
-for file in list *
+ls . > list
+for file in $(<list)
 do
+	if [ "$file" == "." ]
+	then
+		continue
+	fi
 	echo "$file"
 done
