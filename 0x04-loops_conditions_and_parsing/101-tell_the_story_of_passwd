@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # File to read
 file="/etc/passwd"
+if [ ! -e "$file" ]; then
+	echo "Error: $file does not exist."
+	exit 1
+fi
+
 while IFS=: read -r USERNAME PASSWORD USERID GROUPID INFO HOME_DIRECTORY SHELL
 do
 	echo "The user $USERNAME is part of the $GROUPID gang, lives in $HOME_DIRECTORY, and rides $SHELL. $USERID's place is protected by the passcode $PASSWORD, more info about the user here: $INFO"
