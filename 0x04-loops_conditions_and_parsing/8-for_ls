@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-# This script displays: The content of the current directory in a list format
-ls . > list
-for file in $(<list)
+# This script displays the content of the current directory in a list format
+for file in *
 do
-	if [ "$file" == "." ]
-	then
+	if [[ "$file" == .* ]]; then
 		continue
 	fi
-	echo "$file"
+
+	if [[ "$file" == *-* ]]; then
+		echo "${file#*-}"
+	else
+		echo "$file"
+	fi
 done
