@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # File to read
 file="/etc/passwd"
 while IFS=: read -r USERNAME PASSWORD USERID GROUPID INFO HOME_DIRECTORY SHELL
