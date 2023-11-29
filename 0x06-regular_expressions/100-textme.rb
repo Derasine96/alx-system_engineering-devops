@@ -1,2 +1,3 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/(\w+),(\+?\d{11})(-1:0:-1:0:-1)/).join
+match = ARGV[0].match(/\[from:([^\]]+)\] \[to:(\+\d+)\] \[flags:(.*?)\]/)
+puts "#{match[1]},#{match[2]},#{match[3]}"
