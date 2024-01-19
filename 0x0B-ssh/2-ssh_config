@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Script to onnect to a server without typing a password
+
+Host 464026-web-01
+  HostName 54.160.100.173
+  User ubuntu
+  IdentityFile ~/.ssh/school
+  PasswordAuthentication no
