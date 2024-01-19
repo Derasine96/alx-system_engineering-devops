@@ -1,4 +1,4 @@
-#!/usr/bin/env puppet
+#!/usr/bin/pup
 
 # Install a specific version of Flask (2.1.0)
 package { 'flask':
