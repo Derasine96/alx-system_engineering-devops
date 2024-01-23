@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Run Docker on my Linux and navigate Apache server
+
+docker exec -it 41f7a1fb099e /bin/bash
+# Navigate to Apache Document Root
+cd /var/www/html/
+
+#Edit the Default Index File
+vi index.html
+
+#Restart Apache
+service apache2 restart
