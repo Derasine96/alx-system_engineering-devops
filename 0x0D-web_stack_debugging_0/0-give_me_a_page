@@ -3,7 +3,7 @@
 
 docker exec -it 41f7a1fb099e /bin/bash
 # Navigate to Apache Document Root
-cd /var/www/html/
+cd /var/www/html/ || exit
 
 #Edit the Default Index File
 vi index.html
