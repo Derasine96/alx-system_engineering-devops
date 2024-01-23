@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page.
+
+nginx_conf="/etc/nginx/sites-available/default"
+redirect_source="/redirect_me"
+redirect_target="http://upschool.com/register"
+
+if ! command -v nginx &> /dev/null; then
+    echo "nginx could not be found, installing..."
+    sudo apt-get update
+    sudo apt-get install nginx -y
+fi
+
+sudo cp "$nginx_conf" "$nginx_conf.bak"
+
+sudo sed -i "/listen 80 default_server/a rewrite ^$redirect_source $redirect_target permanent;" "$nginx_conf"
+
+sudo nginx -t
+
+if [ $? -eq 0 ]; then
+    echo "Configuration test is successful, restarting nginx..."
+    sudo service nginx reload
+else
+    echo "Configuration test failed. Restoring backup..."
+    sudo cp "$nginx_conf.bak" "$nginx_conf"
+    sudo service nginx reload
+    exit 1
+fi
+
+echo "NGINX has been configured to redirect $redirect_source to $redirect_target with a 301 status."
