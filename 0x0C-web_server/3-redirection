@@ -1,30 +1,30 @@
 #!/usr/bin/env bash
-# Configure your Nginx server so that /redirect_me is redirecting to another page.
+# Installs, configures, and starts the server
+apt-get update
+apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+mkdir -p /var/www/html/
+sudo chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+SERVER_CONFIG=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+	if (\$request_filename ~ redirect_me){
+		rewrite ^ https://upschool.com/register permanent;
+	}
+}"
 
-nginx_conf="/etc/nginx/sites-available/default"
-redirect_source="/redirect_me"
-redirect_target="http://upschool.com/register"
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
 
-if ! command -v nginx &> /dev/null; then
-    echo "nginx could not be found, installing..."
-    sudo apt-get update
-    sudo apt-get install nginx -y
-fi
-
-sudo cp "$nginx_conf" "$nginx_conf.bak"
-
-sudo sed -i "/listen 80 default_server/a rewrite ^$redirect_source $redirect_target permanent;" "$nginx_conf"
-
-sudo nginx -t
-
-if [ $? -eq 0 ]; then
-    echo "Configuration test is successful, restarting nginx..."
-    sudo service nginx reload
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	sudo service nginx start
 else
-    echo "Configuration test failed. Restoring backup..."
-    sudo cp "$nginx_conf.bak" "$nginx_conf"
-    sudo service nginx reload
-    exit 1
+	sudo service nginx restart
 fi
-
-echo "NGINX has been configured to redirect $redirect_source to $redirect_target with a 301 status."
