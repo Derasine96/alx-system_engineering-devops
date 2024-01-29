@@ -1,35 +1,30 @@
-#!/bin/bash
-# Configure Nginx so that its HTTP response contains a custom header
-
-# Update package repositories and install Nginx
+#!/usr/bin/env bash
+# Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02
 sudo apt-get update
 sudo apt-get install -y nginx
 
-# Define the path to the Nginx configuration file
-nginx_config="/etc/nginx/sites-available/default"
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html > /dev/null
 
-# Backup the original Nginx configuration file
-sudo cp "$nginx_config" "$nginx_config.bak"
-
-# Define the new Nginx configuration
-new_config="server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    
-    root /var/www/html;
-    index index.html;
-
-    location / {
-        add_header X-Custom-Header \$hostname;
+echo "server {
+   listen 80;
+   listen [::]:80;
+   
+   root /var/www/html;
+   index index.html;
+   location /redirect_me {
+      return 301 https://upschool.com/register;
+   }
+   error_page 404 /404.html;
+   location = /404.html{
+      internal;
+   }
+   location / {
+        add_header X-Served-By \$hostname;
         try_files \$uri \$uri/ =404;
     }
-}"
+}" | sudo tee /etc/nginx/sites-available/default > /dev/null
 
-# Write the new configuration to the default Nginx file
-echo "$new_config" | sudo tee "$nginx_config" > /dev/null
+nginx -t
 
-# Test Nginx configuration
-sudo nginx -t
-
-# Restart Nginx service
-sudo service nginx restart
+service nginx restart
