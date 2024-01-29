@@ -1,0 +1,35 @@
+#!/bin/bash
+# Configure Nginx so that its HTTP response contains a custom header
+
+# Update package repositories and install Nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Define the path to the Nginx configuration file
+nginx_config="/etc/nginx/sites-available/default"
+
+# Backup the original Nginx configuration file
+sudo cp "$nginx_config" "$nginx_config.bak"
+
+# Define the new Nginx configuration
+new_config="server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        add_header X-Custom-Header \$hostname;
+        try_files \$uri \$uri/ =404;
+    }
+}"
+
+# Write the new configuration to the default Nginx file
+echo "$new_config" | sudo tee "$nginx_config" > /dev/null
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Restart Nginx service
+sudo service nginx restart
