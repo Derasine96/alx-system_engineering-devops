@@ -1,0 +1,10 @@
+./0-nginx_likes_port_80: line 1: NX: command not found
+rm: cannot remove 'default': Permission denied
+ln: failed to create symbolic link 'default': File exists
+nginx: [alert] could not open error log file: open() "/var/log/nginx/error.log" failed (13: Permission denied)
+2024/01/31 00:49:52 [warn] 346#346: the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+2024/01/31 00:49:52 [emerg] 346#346: open() "/run/nginx.pid" failed (13: Permission denied)
+nginx: configuration file /etc/nginx/nginx.conf test failed
+ * Restarting nginx nginx
+   ...fail!

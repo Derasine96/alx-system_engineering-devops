@@ -6,7 +6,7 @@ cd /etc/nginx/sites-enabled/ || exit
 
 # Check if the default file exists before removing it
 if [ -e default ]; then
-    rm default
+	rm default
 fi
 
 # Create a symbolic link to the default file in sites-available
@@ -16,6 +16,6 @@ ln -s /etc/nginx/sites-available/default default
 nginx -t
 
 # Restart NGINX only if it's not already running
-if ! service nginx status >/dev/null; then
-    service nginx restart
+if ! service nginx status > /dev/null; then
+	service nginx restart
 fi
