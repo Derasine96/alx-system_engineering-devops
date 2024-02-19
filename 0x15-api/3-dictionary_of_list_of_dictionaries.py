@@ -11,7 +11,8 @@ if __name__ == "__main__":
         tasks_dict = {}
         for emp in employees:
             emp_id = emp.get("id")
-            todos_response = requests.get(url + "todos", params={"userId": emp_id})
+            todos_response = requests.get(url + "todos",
+                                          params={"userId": emp_id})
             todos = todos_response.json()
             tasks_list = []
             for t in todos:
@@ -23,4 +24,3 @@ if __name__ == "__main__":
                 tasks_list.append(todo_dict)
             tasks_dict[emp_id] = tasks_list
         json.dump(tasks_dict, jsonfile)
-
