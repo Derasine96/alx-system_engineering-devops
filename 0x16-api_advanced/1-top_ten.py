@@ -22,4 +22,4 @@ def top_ten(subreddit):
         else:
             print("None")
     else:
-        print(f"Error: {response.status_code}")
+        print(f"None")
